@@ -1,5 +1,6 @@
 
 package org.learn.Question;
+
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -7,34 +8,34 @@ public class MaxSumLevel {
 	public static void maxSumLevel(Node root) {
 		if (root == null) {
 			System.out.println("Tree is empty");
-			return ;
+			return;
 		}
 		Queue<Node> queue = new LinkedList<Node>();
 		queue.offer(root);
-		//level delimiter
+		// level delimiter
 		queue.offer(null);
 
 		int maxSum = 0;
 		int level = 0;
-		//default root level
+		// default root level
 		int localLevel = 0;
 		int localSum = 0;
 		while (!queue.isEmpty()) {
 			Node node = queue.poll();
-			//Level change
+			// Level change
 			if (null == node) {
 				if (!queue.isEmpty()) {
-					//level delimiter
+					// level delimiter
 					queue.offer(null);
 				}
-				
-				if(localSum > maxSum) {
+
+				if (localSum > maxSum) {
 					maxSum = localSum;
 					level = localLevel;
 				}
-				//Reset the level sum for next level calculation
-				localSum = 0;		
-				localLevel ++;
+				// Reset the level sum for next level calculation
+				localSum = 0;
+				localLevel++;
 			} else {
 				if (node.left != null) {
 					queue.offer(node.left);
@@ -45,6 +46,6 @@ public class MaxSumLevel {
 				localSum += node.data;
 			}
 		}
-		System.out.println(" Max Sum "+maxSum + " is at Level "+level);
+		System.out.println("Max Sum = " + maxSum + " is at Level = " + level);
 	}
 }
